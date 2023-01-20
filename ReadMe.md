@@ -1,12 +1,18 @@
-# Steam License Remover
-
-<p align="center">
+<h1 align = "center">
+    <br>
+    Steam License Remover
+    <br>
+    <br>
     <a href="https://ibb.co/rGqgFZ7"><img src="https://i.ibb.co/1fB379v/Sans-titre.png" alt="Sans-titre" border="0" border-radius="25%"></a>
-</p>
+    <br>
+    <br>
+    Version: 1.1
+    <br>
+</h1>
 
 
 
-## Version: 1.0
+
 
 # Description:
 
