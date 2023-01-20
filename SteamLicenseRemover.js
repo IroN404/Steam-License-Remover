@@ -1,3 +1,12 @@
+// ==UserScript==
+    // @name         Steam License Remover
+    // @namespace
+    // @version      1.1
+    // @description  Remove any "Free" games from your Steam Library by removing the game's license from your account.  
+    // @author       IroN404
+    // @match        https://store.steampowered.com/account/licenses/
+
+
 const table = document.querySelector('.account_table');
 const rows = table.querySelectorAll('tr');
 const total = rows.length;

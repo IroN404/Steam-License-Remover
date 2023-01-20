@@ -21,11 +21,14 @@ This Script will remove any "Free" games from your Steam Library by removing the
 
 # Disclaimer:
 
-This script is provided as is. I am not responsible for any damage that may occur to your account or computer. Use at your own risk.
+This script is provided as is. I am not responsible for any damage that may occur to your account. Use at your own risk.
+Don't change the script, especially the interval time, if you do, your browser's access to your profile settings page may be blocked by Steam for a few seconds or minutes.
+
 
 # Changelog:
 
 1.0 - Initial Release
+1.1 - Added a delay between each request to avoid being blocked by Steam.
 
 # Credits:
 
