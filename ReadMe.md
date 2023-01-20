@@ -3,7 +3,7 @@
     Steam License Remover
     <br>
     <br>
-    <a href="https://ibb.co/rGqgFZ7"><img src="https://i.ibb.co/1fB379v/Sans-titre.png" alt="Sans-titre" border="0" border-radius="25%"></a>
+    <a href="https://ibb.co/D55WXk5"><img src="https://i.ibb.co/LnnRw6n/Sans-titre-modified.png" alt="Sans-titre-modified" border="0"></a>
     <br>
     <br>
     Version: 1.1
