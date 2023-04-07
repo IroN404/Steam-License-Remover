@@ -39,4 +39,4 @@ const intervalId = setInterval(() => {
     if (removed < total) {
         console.log(`Removed ${removed} of ${total} licenses.`);
     }
-}, 1000);
+}, 2000);
