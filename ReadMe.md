@@ -6,43 +6,39 @@
     <a href="https://ibb.co/D55WXk5"><img src="https://i.ibb.co/LnnRw6n/Sans-titre-modified.png" alt="Sans-titre-modified" border="0"></a>
     <br>
     <br>
-    Version: 1.1
+    Version: 1.2
     <br>
 </h1>
 
-
-
-
-
-# Description:
+# Description
 
 This Script will remove any "Free" games from your Steam Library by removing the game's license from your account. In this way, these games will no longer appear in your library.
 
-# Usage:
+# Usage
 
 1. Copy the script to your clipboard.
-2. Open your browser and go to https://store.steampowered.com/account/licenses/
+2. Open your browser and go to <https://store.steampowered.com/account/licenses/>
 3. Open the developer console (F12)
 4. Paste the script into the console and press enter.
 5. Wait for the script to finish.
 6. Refresh the page. ( You may need to do this refresh with the cache, you can do this by pressing CTRL + F5 )
 
-# Notes:
+# Notes
 
 - This script will not remove any games that you have purchased.
 - This script will not remove any games that you have been gifted.
 
-# Disclaimer:
+# Disclaimer
 
 - This script is provided as is. I am not responsible for any damage that may occur to your account. Use at your own risk.
 - Don't change the script, especially the interval time, if you do, your browser's access to your profile settings page may be blocked by Steam for a few seconds or minutes.
 
+# Changelog
 
-# Changelog:
+- 1.0 - Initial Release
+- 1.1 - Added a delay between each request to avoid being blocked by Steam.
+- 1.2 - Fixed delay not working + added ETA + vanilla javascript (no jQuery)
 
- - 1.0 - Initial Release
- - 1.1 - Added a delay between each request to avoid being blocked by Steam.
+# Credits
 
-# Credits:
-
-- SteamDB - https://steamdb.info/
+- SteamDB - <https://steamdb.info/>
