@@ -1,42 +1,76 @@
-// ==UserScript==
+    // ==UserScript==
     // @name         Steam License Remover
     // @namespace
-    // @version      1.1
+    // @version      2.0
     // @description  Remove any "Free" games from your Steam Library by removing the game's license from your account.  
     // @author       IroN404
+    // @fork_comission  Beardox
     // @match        https://store.steampowered.com/account/licenses/
 
 
-const table = document.querySelector('.account_table');
-const rows = table.querySelectorAll('tr');
-const total = rows.length;
+let removedCount = 0;
 
-let removed = 0;
-const intervalId = setInterval(() => {
-    rows.forEach(row => {
-        const div = row.querySelector('.free_license_remove_link');
-        if(div) {
-            const removeLink = div.querySelector('a');
-            if (removeLink) {
-                removed += 1;
-                const link = removeLink.getAttribute('href');
-                const id = link.split('(')[1].split(',')[0].trim();
-                jQuery.post(
-                    'https://store.steampowered.com/account/removelicense',
-                    {
-                        sessionid: g_sessionID,
-                        packageid: id
-                    }
-                );
+async function removeGame(id) {
+    console.log(`Removing game with ID ${id}...`);
+    try {
+        const response = await fetch('https://store.steampowered.com/account/removelicense', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded' // Alterado o Content-Type
+            },
+            body: `sessionid=${encodeURIComponent(g_sessionID)}&packageid=${encodeURIComponent(id)}` // Corrigido o objeto body
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            if (data.success) {
+                removedCount++;
+                console.log(`Game with ID ${id} removed successfully. Total games removed: ${removedCount}`);
+            } else {
+                console.log(`Failed to remove game with ID ${id}.`);
             }
+        } else {
+            console.log(`Failed to remove game with ID ${id}. Status: ${response.status} - ${response.statusText}`);
         }
-    });
+    } catch (error) {
+        console.error(`Error while removing game with ID ${id}:`, error);
+    }
+}
 
-    if (removed === total) {
-        console.log(`All ${total} licenses removed!`);
-        clearInterval(intervalId);
+function extractIdFromLink(link) {
+    const match = link.match(/RemoveFreeLicense\(\s*(\d+)\s*,/);
+    return match ? match[1] : null;
+}
+
+function countRemovableGames() {
+    const removeLinks = document.querySelectorAll('a[href^="javascript:RemoveFreeLicense"]');
+    const totalGames = removeLinks.length;
+    console.log(`Total removable games: ${totalGames}`);
+    return totalGames;
+}
+
+async function removeGames() {
+    const totalGames = countRemovableGames();
+    const intervalID = setInterval(() => {
+        console.log(`Games removed: ${removedCount} of ${totalGames}`);
+        if (removedCount >= totalGames) {
+            clearInterval(intervalID);
+        }
+    }, 1000);
+
+    const removeLinks = document.querySelectorAll('a[href^="javascript:RemoveFreeLicense"]');
+    for (const link of removeLinks) {
+        const id = extractIdFromLink(link.href);
+        if (id) {
+            await removeGame(id);
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Aguarda 2 segundos antes de processar o próximo link
+        } else {
+            console.log(`Failed to extract ID from link: ${link.href}`);
+        }
     }
-    if (removed < total) {
-        console.log(`Removed ${removed} of ${total} licenses.`);
-    }
-}, 2000);
+
+    console.log(`All games removed. Total games removed: ${removedCount}`);
+}
+
+removeGames();
+
